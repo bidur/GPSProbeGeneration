@@ -326,6 +326,8 @@ def select_shp_file():
 	
 	INPUT_SHP_FILE = filedialog.askopenfilename()
 	
+	print (INPUT_SHP_FILE)
+	
 
 	filename, file_extension = os.path.splitext(INPUT_SHP_FILE)
 	if file_extension == '.shp':
