@@ -14,7 +14,7 @@ MAP_MATCHING_PATH ='map-matching-master/'
 GPX_DIR = 'map-matching-master/matching-web/src/test/resources/target/'
 CSV_DIR = 'input/csv/'
 RES_CSV_DIR = 'output/res_csv/' # resultant of mapmatching
-OUTPUT_DIR 		= './output/'
+OUTPUT_DIR 	= './output/'
 
 #@memprof(plot = True) # UNCOMMENT for memory Profiling
 def preprocess_data(sampling_percent, input_file, output_file):

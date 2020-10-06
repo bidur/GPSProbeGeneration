@@ -23,7 +23,7 @@ osm_data_source = ""
 '''
 shp_table_name 		= 'gadm36_NPL_2'
 column_name			= 'NAME_2'
-column_name_value	= 'Gandaki'
+column_name_value	= 'Bagmati'
 '''
 shp_table_name 		= ''
 column_name			= ''
@@ -32,7 +32,7 @@ column_name_value	= ''
 
 ## ---- For map-matching input data
 
-target_osm_pbf = 'nepal-latest.osm.pbf'
+target_osm_pbf = 'philippines-latest.osm.pbf' #'nepal-latest.osm.pbf' 'nepal-latest.osm.pbf'#'kyushu-latest.osm.pbf'#
 
 ######### DO NOT EDIT BELOW #############
 
