@@ -1,6 +1,6 @@
 
 from pyroutelib3 import Router
-from annomize import anonymize_column_values
+#from annomize import anonymize_column_values
 #import shapely.wkt
 #from shapely.ops import nearest_points
 from shapely.geometry import Point
@@ -79,7 +79,8 @@ def merge_and_anonymize_csv(final_anonymized_csv):
 	#export to csv
 	combined_csv.to_csv(combined_file,index=False) 
 	
-	anonymize_column_values( 'ap_id', combined_file, final_anonymized_csv)
+	#anonymize_column_values( 'ap_id', combined_file, final_anonymized_csv)
+	shutil.copy(combined_file,final_anonymized_csv)
 	print ('FINAL Output: ', final_anonymized_csv)
 	#print ("Final output: %s"% anonymized_csv)
 	
@@ -149,7 +150,7 @@ def generate_route_main (ap_id,ts1, ts2, lat1,lon1, lat2, lon2, transport_mode, 
 
 			
 	else:
-		print (("\t (%s)" % status) ,current_route,	' Skipping...', end="")
+		print (("\t (%s)" % status) ,current_route,	' Skipping...')
 		msg = '\n %s %f,%f,%s,%f,%f,%s,--%s--' % (current_route, lat1,lon1,ts1, lat2,lon2,ts2, status )
 		log_error(msg) 
 
@@ -322,7 +323,7 @@ def generate_osm_routes_main(input_csv_file,output_file ):
 	for ap_id in arr_ap_ids:
 		
 		if ap_id in arr_done:# avoid ap_id processed beforehand
-			print ('<'+ ap_id +'>', end=',')
+			print ('<'+ ap_id +'>')
 			continue 
 			
 		#if ap_id=='AP520519':

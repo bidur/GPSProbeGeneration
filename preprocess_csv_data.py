@@ -1,13 +1,13 @@
 
 import random 
 import pandas as pd
-import os
+import os, datetime, shutil
 # sh,
 #from memprof import * # UNCOMMENT for memory Profiling
 from p3_generatePathPoints import remove_dir,check_dir
 from csv2gpx import  prepare_csv_files, convert_csv2gpx
 from gpx2csv import convert_resgpx2csv
-from annomize import anonymize_column_values
+#from annomize import anonymize_column_values
 from config import target_osm_pbf
 
 MAP_MATCHING_PATH ='map-matching-master/'
@@ -82,7 +82,8 @@ def preprocess_data(sampling_percent, input_file, output_file):
 	df_mapped_route.to_csv(output_file,index=False)
 	
 	print (output_file)
-	anonymize_column_values( 'ap_id', output_file, OUTPUT_DIR+'final_csv_4_mobmap.csv') # mobmap visualization without using OSM routes( got via pyRouteLib3)
+	shutil.copy(output_file, OUTPUT_DIR + 'final_csv_4_mobmap.csv') # mobmap visualization without using OSM routes from pyRouteLib3
+	#anonymize_column_values( 'ap_id', output_file, OUTPUT_DIR+'final_csv_4_mobmap.csv') 
 
 	return None
 
