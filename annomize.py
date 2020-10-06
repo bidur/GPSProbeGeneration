@@ -16,7 +16,9 @@ def anonymize_column_values(column_to_anonymize, in_file, op_file):
  
 	#with open(in_file, 'en_US') as f:  # python 2.7
 	with open(in_file, 'r' ) as f:       
-	    with open(op_file, 'w', newline='') as o :
+	    #with open(op_file, 'w', newline='') as o :
+	    with open(op_file, 'wt') as o :
+
 	    # DictReader to extract fields
 	        reader = csv.DictReader(f)
 	        writer = csv.DictWriter(o, reader.fieldnames)
