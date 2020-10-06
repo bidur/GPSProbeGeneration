@@ -25,7 +25,7 @@ head_color 	= 'thistle1'
 TEMP_DIR 		= './output/temp_csv/'
 OUTPUT_DIR 		= './output/'
 INPUT_DIR 		= './input/'
-INPUT_CSV_FILE	= INPUT_DIR +'original.csv'
+INPUT_CSV_FILE	= INPUT_DIR +'original_anonymized.csv'
 INPUT_SHP_FILE = ''
 PREPROCESSED_CSV_FILE 	= INPUT_DIR+'preprocessed.csv'	
 PREPROCESSED_CLIP_FILE  = INPUT_DIR+'preprocessed_clipped.csv'
@@ -298,6 +298,7 @@ def generate_routes():
 	lbl_generate_routes.config(bg=success_color)
 	lbl_generate_routes["text"] = " Route Generation Complete. Check " + OUTPUT_DIR
 
+from annomize import anonymize_column_values
 
       
 def select_csv_file():
@@ -306,7 +307,8 @@ def select_csv_file():
 	filename, file_extension = os.path.splitext(input_file)
 	command =''
 	if file_extension == '.csv':
-		shutil.copy(input_file,INPUT_CSV_FILE)
+		#shutil.copy(input_file,INPUT_CSV_FILE)
+		anonymize_column_values( 'ap_id', input_file, INPUT_CSV_FILE)
 		
 		lbl_csv_file.config(bg=success_color) 
 		lbl_csv_file["text"] = " CSV file location saved "  
