@@ -11,21 +11,23 @@ from tkinter import *
 from tkinter import filedialog
 import time
 
+
 #config.py contains Variables that contains the user credentials to access Twitter API 
 from config import connect_str,dbpassword,dbuser,host,database,shp_table_name,column_name,column_name_value
-
-
+from config import TEMP_DIR,OUTPUT_DIR,INPUT_DIR,ANONYMIZED_CSV_FILE,INPUT_SHP_FILE,PREPROCESSED_CSV_FILE,PREPROCESSED_CLIP_FILE, SAMPLING_PERCENT
+from config import PROBE_TABLE_NAME,CLIPPED_PROBE_TABLE, GPX_DIR, CSV_DIR, RES_CSV_DIR, RAW_CSV_FILE
 
 #######
 warning_color 	= 'red'
 success_color 	= 'cyan'
 misc_color 		= 'azure'
 head_color 	= 'thistle1'
+'''
 ########
 TEMP_DIR 		= './output/temp_csv/'
 OUTPUT_DIR 		= './output/'
 INPUT_DIR 		= './input/'
-INPUT_CSV_FILE	= INPUT_DIR +'original_anonymized.csv'
+ANONYMIZED_CSV_FILE	= INPUT_DIR +'original_anonymized.csv'
 INPUT_SHP_FILE = ''
 PREPROCESSED_CSV_FILE 	= INPUT_DIR+'preprocessed.csv'	
 PREPROCESSED_CLIP_FILE  = INPUT_DIR+'preprocessed_clipped.csv'
@@ -38,7 +40,7 @@ CLIPPED_PROBE_TABLE = 'gps_probe_clip'
 GPX_DIR = 'map-matching-master/matching-web/src/test/resources/target/'
 CSV_DIR = 'input/csv/'
 RES_CSV_DIR = 'output/res_csv/' # resultant of mapmatching
-
+'''
 #--------functions
   
 def close_connection(connection):
@@ -255,8 +257,8 @@ def psql_2_csv(csv_file_name, table_name):
 
 def preprocess_csv_file():
 	
-	if not os.path.isfile(INPUT_CSV_FILE):# if directory exists	
-		print("NOT available: ", INPUT_CSV_FILE)
+	if not os.path.isfile(ANONYMIZED_CSV_FILE):# if directory exists	
+		print("NOT available: ", ANONYMIZED_CSV_FILE)
 		lbl_preprocess.config(bg=warning_color)  
 		lbl_preprocess["text"] = " Make sure 'original.csv' \n is copied to 'input/' dir " 
 		return
@@ -265,7 +267,7 @@ def preprocess_csv_file():
 	
 	
 	#---1. preprocess : deduplicate rows, handle ( same ts, diff loc)
-	preprocess_data(SAMPLING_PERCENT, INPUT_CSV_FILE,  PREPROCESSED_CSV_FILE)
+	preprocess_data(SAMPLING_PERCENT, ANONYMIZED_CSV_FILE,  PREPROCESSED_CSV_FILE)
 	
 	if shp_table_name != '':
 		clip_data_for_selected_region()
@@ -307,8 +309,8 @@ def select_csv_file():
 	filename, file_extension = os.path.splitext(input_file)
 	command =''
 	if file_extension == '.csv':
-		#shutil.copy(input_file,INPUT_CSV_FILE)
-		anonymize_column_values( 'ap_id', input_file, INPUT_CSV_FILE)
+		#shutil.copy(input_file,ANONYMIZED_CSV_FILE)
+		anonymize_column_values( 'ap_id', input_file, ANONYMIZED_CSV_FILE)
 		
 		lbl_csv_file.config(bg=success_color) 
 		lbl_csv_file["text"] = " CSV file location saved "  

@@ -60,9 +60,7 @@ def preprocess_data(sampling_percent, input_file, output_file):
 	
 	# APPLY sampling_percent
 	df_sample = apply_sampling(sampling_percent, df_clean)
-	
-	
-	
+
 	prepare_csv_files(df_sample,CSV_DIR) # csv2gpx.py
 	convert_csv2gpx(CSV_DIR,GPX_DIR)
 	
