@@ -310,7 +310,11 @@ def select_csv_file():
 	command =''
 	if file_extension == '.csv':
 		#shutil.copy(input_file,ANONYMIZED_CSV_FILE)
-		anonymize_column_values( 'ap_id', input_file, ANONYMIZED_CSV_FILE)
+		df = pd.read_csv(input_file) # pandas can deal with encodings
+		input_file_temp = INPUT_DIR+'input_file_temp.csv'
+		df.to_csv(input_file_temp,index=False)
+		df.to_csv(input_file_temp,index=False)
+		anonymize_column_values( 'ap_id', input_file_temp, ANONYMIZED_CSV_FILE)
 		
 		lbl_csv_file.config(bg=success_color) 
 		lbl_csv_file["text"] = " CSV file location saved "  
